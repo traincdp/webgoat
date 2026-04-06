@@ -43,10 +43,13 @@ jobs:
 
 workflows:
   version: 2
-  django:
+  webgoat:
     jobs:
       - build
       - test
+      - odc-backend:
+          requires:
+            - test
       - integration
       - prod:
           type: approval

@@ -12,6 +12,17 @@ jobs:
     steps:
       - checkout
       - run: echo "This is a test step"
+  
+  odc-backend:
+    machine: true
+    steps:
+      - checkout
+
+      - run: chmod +x ./run-depcheck.sh && ./run-depcheck.sh
+
+      - store_artifacts:
+          path: reports/dependency-check-report.json
+          destination: depcheck-artifact
 
   integration:
     docker:
